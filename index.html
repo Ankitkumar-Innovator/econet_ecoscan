@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoScan - Smart Waste Disposal Guide</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- External CSS Module -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         HEADER / HERO SECTION
+         ========================================== -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="brand-logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
+                </svg>
+                <span>EcoScan</span>
+            </div>
+            <p class="header-tagline">Smart Municipal Waste Classification & Segregation Guide</p>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTAINER
+         ========================================== -->
+    <main class="main-container">
+
+        <!-- Dynamic Statistics Counters -->
+        <section class="stats-bar">
+            <div class="stat-item">
+                <div id="statTotal" class="stat-value">0</div>
+                <div class="stat-label">Total Waste Items</div>
+            </div>
+            <div class="stat-item">
+                <div id="statRecyclable" class="stat-value">0</div>
+                <div class="stat-label">Dry Recyclables</div>
+            </div>
+            <div class="stat-item">
+                <div id="statHazardous" class="stat-value">0</div>
+                <div class="stat-label">Hazardous / E-Waste</div>
+            </div>
+        </section>
+
+        <!-- Search Input & Quick Filter Pills -->
+        <section class="controls-card">
+            <div class="search-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                    <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
+                </svg>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search item, category, bin color, or keyword (e.g., Plastic, Battery, Blue Bin)..."
+                    autocomplete="off"
+                />
+            </div>
+
+            <div class="filter-section">
+                <span class="filter-title">Filter by Category:</span>
+                <div class="pill-container">
+                    <button class="pill active" data-category="All">All Items</button>
+                    <button class="pill" data-category="Dry Waste">Dry Waste</button>
+                    <button class="pill" data-category="Wet Waste">Wet Waste</button>
+                    <button class="pill" data-category="Hazardous">Hazardous</button>
+                    <button class="pill" data-category="E-Waste">E-Waste</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Card Results Grid -->
+        <section id="resultsGrid" class="results-grid">
+            <!-- Cards rendered dynamically via app.js -->
+        </section>
+
+        <!-- Fallback view when zero items match search -->
+        <div id="noResults" class="no-results hidden">
+            <div class="no-results-icon">🍃</div>
+            <h3 class="no-results-title">No matching waste items found</h3>
+            <p class="no-results-desc">Try checking your spelling or searching for a different item name or keyword.</p>
+            <button id="resetSearchBtn" class="reset-btn">Reset Search & Filters</button>
+        </div>
+
+    </main>
+
+    <!-- ==========================================
+         INTERACTIVE ITEM DETAIL MODAL
+         ========================================== -->
+    <div id="itemModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalTitle" class="card-title" style="font-size: 1.3rem;">Item Name</h2>
+                    <span id="modalBadge" class="badge">Category</span>
+                </div>
+                <button id="modalCloseBtn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalBinIndicator" class="bin-indicator">
+                    🗑️ Bin Instruction
+                </div>
+                <div class="modal-instruction-box">
+                    <div class="modal-instruction-title">
+                        📌 Step-by-Step Handling & Disposal Guide:
+                    </div>
+                    <p id="modalInstruction" class="modal-instruction-text">
+                        Detailed instructions will appear here...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="app-footer">
+        <p>EcoScan &copy; 2026 | Smart Municipal Waste Segregation Directory</p>
+    </footer>
+
+    <!-- JavaScript Modules (Loaded in sequence) -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
