@@ -13,7 +13,7 @@ const wasteDatabase = [
         badgeClass: "badge-dry",
         emoji: "🍾",
         // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/plastic_bottle.jpg"
-        imageSrc: "https://placehold.co/400x200/e0f2fe/0284c7?text=Plastic+Water+Bottle",
+        imageSrc: "images/plastic_bottle.jpg",
         keywords: ["plastic", "pet bottle", "container", "blue bin", "recycle"],
         instruction: "Empty residual liquid, rinse thoroughly with clean water, crush flat to conserve space, and screw the cap back on before binning."
     },
