@@ -2,6 +2,7 @@
  * EcoScan Static Database
  * Category Options: "Dry Waste", "Wet Waste", "Hazardous", "E-Waste"
  * Bin Themes: "blue", "green", "red", "amber"
+ * Images are loaded from the local "images/" folder.
  */
 const wasteDatabase = [
     {
@@ -12,7 +13,6 @@ const wasteDatabase = [
         binTheme: "blue",
         badgeClass: "badge-dry",
         emoji: "🍾",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/plastic_bottle.jpg"
         imageSrc: "images/plastic_bottle.jpg",
         keywords: ["plastic", "pet bottle", "container", "blue bin", "recycle"],
         instruction: "Empty residual liquid, rinse thoroughly with clean water, crush flat to conserve space, and screw the cap back on before binning."
@@ -25,8 +25,7 @@ const wasteDatabase = [
         binTheme: "green",
         badgeClass: "badge-wet",
         emoji: "🍌",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/fruit_peels.jpg"
-        imageSrc: "https://placehold.co/400x200/dcfce7/16a34a?text=Fruit+%26+Vegetable+Peels",
+        imageSrc: "images/Sakurajima_komikan.JPG",
         keywords: ["organic", "kitchen", "compost", "food", "green bin", "banana"],
         instruction: "Collect without plastic wrapping. Drain liquid contents. Ideal for home composting or municipal organic waste pickup."
     },
@@ -38,8 +37,7 @@ const wasteDatabase = [
         binTheme: "red",
         badgeClass: "badge-haz",
         emoji: "🔋",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/batteries.jpg"
-        imageSrc: "https://placehold.co/400x200/fee2e2/dc2626?text=AA+AAA+Batteries",
+        imageSrc: "images/Type_A_batteries.jpg",
         keywords: ["battery", "chemical", "cell", "alkaline", "toxic", "red bin"],
         instruction: "Contains toxic heavy metals and chemicals. Store in a dry box and hand over to registered hazardous waste collection drives."
     },
@@ -51,8 +49,7 @@ const wasteDatabase = [
         binTheme: "blue",
         badgeClass: "badge-dry",
         emoji: "📦",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/cardboard.jpg"
-        imageSrc: "https://placehold.co/400x200/e0f2fe/0284c7?text=Cardboard+Box",
+        imageSrc: "images/images.jpg",
         keywords: ["paper", "carton", "amazon box", "packaging", "blue bin"],
         instruction: "Remove plastic packing tapes and shipping labels. Flatten cardboard completely to ensure it stays dry inside the bin."
     },
@@ -64,8 +61,8 @@ const wasteDatabase = [
         binTheme: "green",
         badgeClass: "badge-wet",
         emoji: "🍲",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/cooked_food.jpg"
-        imageSrc: "https://placehold.co/400x200/dcfce7/16a34a?text=Leftover+Food",
+        // ⚠️ File name is cut off in your screenshot - rename the file to leftover_food.jpg
+        imageSrc: "images/leftover_food.jpg",
         keywords: ["curry", "rice", "kitchen", "wet waste", "compost", "green bin"],
         instruction: "Strain liquid gravies into drains prior to disposal to prevent foul odor and flies in organic collection bins."
     },
@@ -77,8 +74,7 @@ const wasteDatabase = [
         binTheme: "amber",
         badgeClass: "badge-ewaste",
         emoji: "📱",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/smartphone.jpg"
-        imageSrc: "https://placehold.co/400x200/fef3c7/d97706?text=Old+Smartphone",
+        imageSrc: "images/Mobile_phone_PHS_Japan_1997-2003.jpg",
         keywords: ["mobile", "phone", "gadget", "electronics", "circuit", "e-waste"],
         instruction: "Perform a complete factory reset, remove SIM/SD cards, and drop off at certified electronic recycling bins or centers."
     },
@@ -90,8 +86,7 @@ const wasteDatabase = [
         binTheme: "blue",
         badgeClass: "badge-dry",
         emoji: "🍾",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/glass_jar.jpg"
-        imageSrc: "https://placehold.co/400x200/e0f2fe/0284c7?text=Glass+Bottle",
+        imageSrc: "images/Beer_bottles_2018_G1.jpg",
         keywords: ["glass", "jar", "pickle jar", "blue bin", "recycle"],
         instruction: "Rinse food residues clean. If broken, wrap securely in thick paper before disposal to safeguard municipal waste collectors."
     },
@@ -103,8 +98,7 @@ const wasteDatabase = [
         binTheme: "red",
         badgeClass: "badge-haz",
         emoji: "💊",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/medicines.jpg"
-        imageSrc: "https://placehold.co/400x200/fee2e2/dc2626?text=Expired+Medicines",
+        imageSrc: "images/Expired_drugs.jpg",
         keywords: ["pharma", "tablets", "drugs", "medical", "red bin", "hazardous"],
         instruction: "Never flush medicines down sinks or toilets to protect water tables. Keep in original packaging and bring to medical collection drives."
     },
@@ -116,8 +110,7 @@ const wasteDatabase = [
         binTheme: "green",
         badgeClass: "badge-wet",
         emoji: "☕",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/tea_bags.jpg"
-        imageSrc: "https://placehold.co/400x200/dcfce7/16a34a?text=Tea+Bags",
+        imageSrc: "images/Used_coffee_grounds.JPG",
         keywords: ["tea", "coffee", "organic", "green bin", "compost"],
         instruction: "Remove metal staple pins or synthetic tags before throwing tea bags into organic compost bins."
     },
@@ -129,8 +122,7 @@ const wasteDatabase = [
         binTheme: "blue",
         badgeClass: "badge-dry",
         emoji: "🥤",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/aluminum_can.jpg"
-        imageSrc: "https://placehold.co/400x200/e0f2fe/0284c7?text=Aluminum+Can",
+        imageSrc: "images/12-ounce_Aluminum_Can_(32167233397).jpg",
         keywords: ["soda", "coke", "metal", "tin", "aluminum", "blue bin"],
         instruction: "Rinse out sticky sugary liquid, crush the can flat, and place inside the recyclable dry waste bin."
     },
@@ -142,8 +134,7 @@ const wasteDatabase = [
         binTheme: "red",
         badgeClass: "badge-haz",
         emoji: "🩹",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/diaper.jpg"
-        imageSrc: "https://placehold.co/400x200/fee2e2/dc2626?text=Sanitary+Waste",
+        imageSrc: "images/Cloth_diaper3.jpg",
         keywords: ["diaper", "wipes", "sanitary", "medical", "red bin", "hazardous"],
         instruction: "Wrap securely in newspaper or trash bags. Mark clearly with a red cross mark for dedicated biomedical incinerator collection."
     },
@@ -155,9 +146,164 @@ const wasteDatabase = [
         binTheme: "amber",
         badgeClass: "badge-ewaste",
         emoji: "💡",
-        // IMAGE PLACEHOLDER: Replace URL with local file path, e.g. "images/cfl_bulb.jpg"
-        imageSrc: "https://placehold.co/400x200/fef3c7/d97706?text=CFL+Light+Bulb",
+        imageSrc: "images/images (1).jpg",
         keywords: ["bulb", "mercury", "light", "tube", "electronics", "e-waste"],
         instruction: "Contains hazardous mercury vapor. Handle with care to prevent breakage. Return to electronic store drop-off boxes."
+    },
+    {
+        id: 13,
+        name: "Newspaper & Magazines",
+        category: "Dry Waste",
+        bin: "Blue Bin (Recyclable Dry Waste)",
+        binTheme: "blue",
+        badgeClass: "badge-dry",
+        emoji: "📰",
+        imageSrc: "images/2011_newspapers_Tehran_6030393078.jpg",
+        keywords: ["newspaper", "magazine", "paper", "books", "recycling", "blue bin"],
+        instruction: "Keep newspapers and magazines dry and free from food or oil stains. Bundle them together before placing them in the recyclable dry waste bin."
+    },
+    {
+        id: 14,
+        name: "Eggshells",
+        category: "Wet Waste",
+        bin: "Green Bin (Organic / Biodegradable)",
+        binTheme: "green",
+        badgeClass: "badge-wet",
+        emoji: "🥚",
+        imageSrc: "images/images (2).jpg",
+        keywords: ["eggshells", "egg", "kitchen waste", "organic", "compost", "green bin"],
+        instruction: "Crush eggshells into smaller pieces and add them to your compost bin or organic waste collection. Avoid mixing them with plastic or other non-biodegradable materials."
+    },
+    {
+        id: 15,
+        name: "Used Cooking Oil",
+        category: "Hazardous",
+        bin: "Red Bin (Domestic Hazardous Waste)",
+        binTheme: "red",
+        badgeClass: "badge-haz",
+        emoji: "🛢️",
+        imageSrc: "images/images (3).jpg",
+        keywords: ["cooking oil", "used oil", "frying oil", "kitchen oil", "oil waste", "hazardous"],
+        instruction: "Allow the oil to cool completely and store it in a sealed container. Never pour cooking oil into drains. Use an authorized collection service or follow local waste disposal guidelines."
+    },
+    {
+        id: 16,
+        name: "Old Laptop / Computer",
+        category: "E-Waste",
+        bin: "Yellow / Amber Bin (Electronic Waste)",
+        binTheme: "amber",
+        badgeClass: "badge-ewaste",
+        emoji: "💻",
+        imageSrc: "images/images (4).jpg",
+        keywords: ["laptop", "computer", "keyboard", "electronics", "gadget", "e-waste"],
+        instruction: "Back up important files, sign out of accounts, securely erase personal data, and hand the device over to an authorized e-waste collection center."
+    },
+    {
+        id: 17,
+        name: "Leaves & Garden Clippings",
+        category: "Wet Waste",
+        bin: "Green Bin (Organic / Biodegradable)",
+        binTheme: "green",
+        badgeClass: "badge-wet",
+        emoji: "🍃",
+        imageSrc: "images/images (5).jpg",
+        keywords: ["leaves", "garden", "grass", "plant waste", "organic", "compost"],
+        instruction: "Collect leaves and small garden clippings separately from plastic and other rubbish. Compost them at home or use a designated garden waste collection service."
+    },
+    {
+        id: 18,
+        name: "Broken Ceramic Cup / Plate",
+        category: "Dry Waste",
+        bin: "Blue Bin (Dry Waste — Check Local Rules)",
+        binTheme: "blue",
+        badgeClass: "badge-dry",
+        emoji: "🍽️",
+        imageSrc: "images/broken_ceramics.jpg",
+        keywords: ["ceramic", "cup", "plate", "broken dish", "porcelain", "sharp waste"],
+        instruction: "Wrap broken ceramic pieces securely in thick paper or cardboard and label them to prevent injuries. Check local disposal rules because ceramics are generally not recyclable with ordinary glass."
+    },
+    {
+        id: 19,
+        name: "Paints & Solvents",
+        category: "Hazardous",
+        bin: "Red Bin (Domestic Hazardous Waste)",
+        binTheme: "red",
+        badgeClass: "badge-haz",
+        emoji: "🎨",
+        imageSrc: "images/paint_solvents.jpg",
+        keywords: ["paint", "solvent", "thinner", "chemical", "toxic", "hazardous waste"],
+        instruction: "Keep paints and solvents in their original, clearly labeled containers. Never pour them into drains or regular bins. Contact an authorized hazardous waste collection service for safe disposal."
+    },
+    {
+        id: 20,
+        name: "Old Television / Monitor",
+        category: "E-Waste",
+        bin: "Yellow / Amber Bin (Electronic Waste)",
+        binTheme: "amber",
+        badgeClass: "badge-ewaste",
+        emoji: "📺",
+        imageSrc: "images/images (6).jpg",
+        keywords: ["television", "TV", "monitor", "screen", "electronics", "e-waste"],
+        instruction: "Do not dismantle the television or monitor yourself. Protect the screen from damage and arrange collection through an authorized e-waste recycler or designated collection center."
+    },
+    {
+        id: 21,
+        name: "Coconut Shells",
+        category: "Wet Waste",
+        bin: "Green Bin (Organic / Biodegradable — Check Local Rules)",
+        binTheme: "green",
+        badgeClass: "badge-wet",
+        emoji: "🥥",
+        imageSrc: "images/coconut_shells.jpg",
+        keywords: ["coconut", "shell", "organic waste", "kitchen waste", "compost", "biodegradable"],
+        instruction: "Break coconut shells into smaller pieces if practical. Because they decompose slowly, check whether your local organic waste service accepts them or arrange separate garden waste collection."
+    },
+    {
+        id: 22,
+        name: "Used Fluorescent Tube Light",
+        category: "E-Waste",
+        bin: "Yellow / Amber Bin (Hazardous E-Waste)",
+        binTheme: "amber",
+        badgeClass: "badge-ewaste",
+        emoji: "💡",
+        imageSrc: "images/fluorescent_tube.jpg",
+        keywords: ["tube light", "fluorescent lamp", "mercury", "bulb", "lighting", "e-waste"],
+        instruction: "Fluorescent tubes may contain mercury. Do not break them. Keep them protected from impact and take them to an authorized lamp or e-waste collection facility."
+    },
+    {
+        id: 23,
+        name: "Used Cooking Oil Container",
+        category: "Dry Waste",
+        bin: "Blue Bin (Recyclable Dry Waste — If Accepted)",
+        binTheme: "blue",
+        badgeClass: "badge-dry",
+        emoji: "🧴",
+        imageSrc: "images/oil_container.jpg",
+        keywords: ["oil bottle", "plastic container", "cooking oil bottle", "plastic", "recycling", "blue bin"],
+        instruction: "Empty the container completely and wipe away oil residue. Rinse it if local recycling rules allow, then place it in the dry waste stream. If heavily contaminated, follow local disposal guidance."
+    },
+    {
+        id: 24,
+        name: "Old Electrical Wires & Cables",
+        category: "E-Waste",
+        bin: "Yellow / Amber Bin (Electronic Waste)",
+        binTheme: "amber",
+        badgeClass: "badge-ewaste",
+        emoji: "🔌",
+        imageSrc: "images/electrical_cables.jpg",
+        keywords: ["wire", "cable", "charger cable", "copper wire", "electrical", "e-waste"],
+        instruction: "Bundle cables neatly without cutting or burning them. Keep them separate from ordinary waste and hand them over to an authorized e-waste recycler or collection center."
+    },
+    {
+        id: 25,
+        name: "Used Tissue Paper & Paper Towels",
+        category: "Wet Waste",
+        bin: "Green Bin (Organic / Biodegradable — Check Local Rules)",
+        binTheme: "green",
+        badgeClass: "badge-wet",
+        emoji: "🧻",
+        imageSrc: "images/used_tissue.jpg",
+        keywords: ["tissue", "paper towel", "used tissue", "kitchen paper", "organic waste", "wet waste"],
+        instruction: "Dispose of lightly soiled tissues according to local waste rules. Do not compost tissues contaminated with chemicals, cleaning products, or bodily fluids unless an appropriate system specifically accepts them."
     }
 ];
