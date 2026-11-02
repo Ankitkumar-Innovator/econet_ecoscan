@@ -73,10 +73,10 @@ let wasteDatabase = [
         binTheme: "green",
         badgeClass: "badge-wet",
         emoji: "🍲",
-<<<<<<< HEAD
-=======
+
+
         // ⚠️ File name is cut off in your screenshot - rename the file to leftover_food.jpg
->>>>>>> 547a87ff1af3e7d36c913c7c66df32be09767fd8
+
         imageSrc: "images/leftover_food.jpg",
         keywords: ["curry", "rice", "kitchen", "wet waste", "compost", "green bin"],
         instruction: "Strain liquid gravies into drains prior to disposal to prevent foul odor and flies in organic collection bins."
