@@ -3,131 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoScan - Smart Waste Disposal Guide</title>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- External CSS Module -->
+    <title>EcoScan - Smart Waste Disposal Guide & Campus IoT Node</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ==========================================
-         HEADER / HERO SECTION
-         ========================================== -->
+    <!-- Professional Enterprise Header & Navbar -->
     <header class="app-header">
-        <div class="header-content">
-            <div class="brand-logo">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
-                </svg>
-                <span>EcoScan</span>
+        <div class="nav-container">
+            <!-- Brand Logo & Title -->
+            <div class="nav-brand">
+                <div class="logo">🌱 <span>EcoScan</span></div>
+                <p class="tagline">Campus Sustainability Hub</p>
             </div>
-            <p class="header-tagline">Smart Municipal Waste Classification & Segregation Guide</p>
+
+            <!-- Central User Profile & Gamification Badge -->
+            <div class="nav-profile-group">
+                <button id="profileEditBtn" class="profile-edit-btn" title="Edit Profile & Stream">
+                    👤 <span id="userDisplayName">Student</span> (<span id="userStreamTag">CSE</span>)
+                </button>
+                <div id="xpBadge" class="xp-badge">
+                    ⭐ <span id="userXp">0</span> XP | 🔥 <span id="userStreakCount">1</span> Day | <span id="userRank">Rookie Sorter</span>
+                </div>
+            </div>
+
+            <!-- Right-aligned Quick Navigation Utilities -->
+            <div class="nav-actions-group">
+                <button id="openLeaderboardBtn" class="nav-utility-btn leaderboard-btn" title="View Stream Leaderboard">
+                    🏆 Leaderboard
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- ==========================================
-         MAIN CONTAINER
-         ========================================== -->
+    <!-- Premium Glassmorphism Rotating Fact Banner -->
+    <div class="ticker-container">
+        <div class="ticker-track" id="factTicker"></div>
+    </div>
+
     <main class="main-container">
 
-        <!-- Dynamic Statistics Counters -->
-        <section class="stats-bar">
-            <div class="stat-item">
-                <div id="statTotal" class="stat-value">0</div>
-                <div class="stat-label">Total Waste Items</div>
-            </div>
-            <div class="stat-item">
-                <div id="statRecyclable" class="stat-value">0</div>
-                <div class="stat-label">Dry Recyclables</div>
-            </div>
-            <div class="stat-item">
-                <div id="statHazardous" class="stat-value">0</div>
-                <div class="stat-label">Hazardous / E-Waste</div>
-            </div>
-        </section>
-
-        <!-- Search Input & Quick Filter Pills -->
-        <section class="controls-card">
-            <div class="search-wrapper">
-                <svg class="search-icon" viewBox="0 0 24 24">
-                    <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
-                </svg>
+        <!-- Search & Control Action Bar -->
+        <section class="search-section">
+            <div class="search-bar-wrapper">
                 <input 
                     type="text" 
                     id="searchInput" 
-                    placeholder="Search item, category, bin color, or keyword (e.g., Plastic, Battery, Blue Bin)..."
+                    placeholder="Search waste item (e.g., Plastic Bottle, Battery, Cardboard)..."
                     autocomplete="off"
                 />
-            </div>
-
-            <div class="filter-section">
-                <span class="filter-title">Filter by Category:</span>
-                <div class="pill-container">
-                    <button class="pill active" data-category="All">All Items</button>
-                    <button class="pill" data-category="Dry Waste">Dry Waste</button>
-                    <button class="pill" data-category="Wet Waste">Wet Waste</button>
-                    <button class="pill" data-category="Hazardous">Hazardous</button>
-                    <button class="pill" data-category="E-Waste">E-Waste</button>
-                </div>
+                <button id="openBinScannerBtn" class="scanner-trigger-btn" title="Scan Campus Bin QR">
+                    📷 Scan Bin QR
+                </button>
+                <button id="openRegisterBinBtn" class="register-trigger-btn" title="Register New Campus Bin">
+                    ➕ Register Bin QR
+                </button>
             </div>
         </section>
 
-        <!-- Dynamic Card Results Grid -->
-        <section id="resultsGrid" class="results-grid">
-            <!-- Cards rendered dynamically via app.js -->
+        <!-- Quick Filters -->
+        <section class="filter-section">
+            <span class="filter-label">Quick Filters:</span>
+            <div class="pill-group">
+                <button class="pill active" data-category="All">All</button>
+                <button class="pill" data-category="Dry Waste">Dry Waste</button>
+                <button class="pill" data-category="Wet Waste">Wet Waste</button>
+                <button class="pill" data-category="Hazardous">Hazardous</button>
+                <button class="pill" data-category="E-Waste">E-Waste</button>
+            </div>
         </section>
 
-        <!-- Fallback view when zero items match search -->
+        <!-- Results Grid -->
+        <section id="resultsGrid" class="results-grid"></section>
+
+        <!-- No Results Fallback -->
         <div id="noResults" class="no-results hidden">
-            <div class="no-results-icon">🍃</div>
-            <h3 class="no-results-title">No matching waste items found</h3>
-            <p class="no-results-desc">Try checking your spelling or searching for a different item name or keyword.</p>
-            <button id="resetSearchBtn" class="reset-btn">Reset Search & Filters</button>
+            <p>🔍 No matching waste item found in the database.</p>
         </div>
 
     </main>
 
-    <!-- ==========================================
-         INTERACTIVE ITEM DETAIL MODAL
-         ========================================== -->
-    <div id="itemModal" class="modal-overlay">
-        <div class="modal-card">
-            <div class="modal-header">
-                <div>
-                    <h2 id="modalTitle" class="card-title" style="font-size: 1.3rem;">Item Name</h2>
-                    <span id="modalBadge" class="badge">Category</span>
-                </div>
-                <button id="modalCloseBtn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+    <!-- Interactive Chronological Disposal Detail Modal -->
+    <div id="itemModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="closeModal" class="modal-close">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Enterprise Smart Bin Station Modal -->
+    <div id="binScannerModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 500px; text-align: center;">
+            <button id="closeBinScanner" class="modal-close">&times;</button>
+            
+            <div style="background: linear-gradient(135deg, #0284c7, #0369a1); padding: 24px; border-radius: 14px; color: white; margin-bottom: 20px;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 6px;">🏢 Campus Smart Bin Node</h2>
+                <p style="font-size: 0.9rem; opacity: 0.9;">Enterprise IoT Waste Management & Instant Validation</p>
             </div>
-            <div class="modal-body">
-                <div id="modalBinIndicator" class="bin-indicator">
-                    🗑️ Bin Instruction
+
+            <p style="font-size: 0.95rem; color: #475569; margin-bottom: 16px;">
+                Select a campus bin location to simulate scanning its physical QR sticker:
+            </p>
+
+            <div id="dynamicBinListContainer" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; max-height: 220px; overflow-y: auto;">
+                <!-- Populated dynamically -->
+            </div>
+
+            <div id="binStationResult" class="hidden" style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 14px; border-radius: 10px; text-align: left; color: #166534;">
+                <!-- Dynamically populated station status -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Enterprise Register & Generate QR Modal -->
+    <div id="registerBinModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 540px; text-align: center;">
+            <button id="closeRegisterBin" class="modal-close">&times;</button>
+            
+            <div style="background: linear-gradient(135deg, #15803d, #166534); padding: 22px; border-radius: 14px; color: white; margin-bottom: 20px;">
+                <h2 style="font-size: 1.6rem; margin-bottom: 4px;">🛠️ Register Campus Bin Node</h2>
+                <p style="font-size: 0.88rem; opacity: 0.9;">Generate Printable Eco-Sticker Posters Instantly</p>
+            </div>
+
+            <form id="qrGeneratorForm" style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
+                <div>
+                    <label style="font-weight: 600; font-size: 0.9rem; color: #334155;">Campus Location / Node Name:</label>
+                    <input type="text" id="nodeLocationInput" placeholder="e.g. Mechanical Block - Room 102 Gate" required style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 4px;" />
                 </div>
-                <div class="modal-instruction-box">
-                    <div class="modal-instruction-title">
-                        📌 Step-by-Step Handling & Disposal Guide:
+
+                <div>
+                    <label style="font-weight: 600; font-size: 0.9rem; color: #334155;">Bin Waste Stream:</label>
+                    <select id="nodeStreamSelect" style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 4px;">
+                        <option value="Dry Waste Only (Blue Stream)">Blue Bin — Recyclable Dry Waste</option>
+                        <option value="Wet Waste Only (Green Stream)">Green Bin — Organic / Wet Waste</option>
+                        <option value="Dual Stream (Dry + Wet)">Dual Stream — Green & Blue Bins</option>
+                        <option value="Hazardous / E-Waste (Red & Amber)">Red & Amber — E-Waste & Bio-Hazard</option>
+                    </select>
+                </div>
+
+                <button type="submit" style="background: #2e7d32; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 6px;">
+                    ⚡ Generate Eco-Sticker Poster
+                </button>
+            </form>
+
+            <div id="qrPreviewArea" class="hidden" style="margin-top: 20px; background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px dashed #cbd5e1; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                <strong style="color: #1e293b; font-size: 0.95rem;">📸 Campus Eco-Sticker Poster Preview:</strong>
+                <div id="qrImageContainer"></div>
+                <p id="qrDetailsText" style="font-size: 0.85rem; color: #475569; margin: 0;"></p>
+                <button id="downloadQrBtn" style="background: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; cursor: pointer;">
+                    🖨️ Print Printable Eco-Sticker Poster
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Stream Leaderboard Modal -->
+    <div id="leaderboardModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 520px; text-align: center;">
+            <button id="closeLeaderboard" class="modal-close">&times;</button>
+            
+            <div style="background: linear-gradient(135deg, #d97706, #b45309); padding: 22px; border-radius: 14px; color: white; margin-bottom: 20px;">
+                <h2 style="font-size: 1.7rem; margin-bottom: 4px;">🏆 Campus Stream Leaderboard</h2>
+                <p style="font-size: 0.88rem; opacity: 0.9;">Real-Time Department Eco-Clash & Top Sorters</p>
+            </div>
+
+            <div id="leaderboardList" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile & Stream Modal -->
+    <div id="profileModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 440px;">
+            <button id="closeProfile" class="modal-close">&times;</button>
+            
+            <div style="background: linear-gradient(135deg, #1b4332, #2d6a4f); padding: 20px; border-radius: 12px; color: white; text-align: center; margin-bottom: 18px;">
+                <h2 style="font-size: 1.5rem; margin-bottom: 4px;">👤 Student Eco Profile</h2>
+                <p style="font-size: 0.85rem; opacity: 0.9;">Enter details to compete in Department Leaderboards</p>
+            </div>
+
+            <form id="profileForm" style="display: flex; flex-direction: column; gap: 14px;">
+                <div>
+                    <label style="font-weight: 600; font-size: 0.9rem; color: #334155;">Your Full Name:</label>
+                    <input type="text" id="userNameInput" placeholder="e.g. John Doe" required style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 4px;" />
+                </div>
+
+                <div>
+                    <label style="font-weight: 600; font-size: 0.9rem; color: #334155;">Department / Stream:</label>
+                    <select id="userStreamSelect" style="width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 4px;">
+                        <option value="CSE">Computer Science & Engineering (CSE)</option>
+                        <option value="ECE">Electronics & Communication (ECE)</option>
+                        <option value="MECH">Mechanical Engineering (MECH)</option>
+                        <option value="CIVIL">Civil Engineering (CIVIL)</option>
+                        <option value="EE">Electrical Engineering (EE)</option>
+                    </select>
+                </div>
+
+                <button type="submit" style="background: #2e7d32; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 6px;">
+                    💾 Save Profile & Join Leaderboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Management Dashboard Modal -->
+    <div id="adminDashboardModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 600px;">
+            <button id="closeAdminDashboard" class="modal-close">&times;</button>
+            
+            <div style="background: linear-gradient(135deg, #1e293b, #0f172a); padding: 22px; border-radius: 14px; color: white; margin-bottom: 20px; text-align: center;">
+                <h2 style="font-size: 1.6rem; margin-bottom: 4px;">🔐 EcoScan Admin Control Center</h2>
+                <p style="font-size: 0.88rem; opacity: 0.9;">Manage Waste Items, Campus Bins, and System Stats</p>
+            </div>
+
+            <!-- Admin Navigation Tabs -->
+            <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+                <button id="tabAddWaste" class="pill active" style="flex:1;">+ Add Waste Item</button>
+                <button id="tabManageBins" class="pill" style="flex:1;">📍 Manage Bins</button>
+                <button id="tabManageWaste" class="pill" style="flex:1;">🗑️ Manage Waste DB</button>
+            </div>
+
+            <!-- Tab 1: Add New Waste Item Form -->
+            <div id="adminWasteFormContainer">
+                <form id="adminNewItemForm" style="display: flex; flex-direction: column; gap: 12px;">
+                    <div>
+                        <label style="font-weight: 600; font-size: 0.85rem; color: #334155;">Item Name:</label>
+                        <input type="text" id="adminItemName" placeholder="e.g. Biodegradable Coffee Cup" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 4px;" />
                     </div>
-                    <p id="modalInstruction" class="modal-instruction-text">
-                        Detailed instructions will appear here...
-                    </p>
+                    <div style="display: flex; gap: 10px;">
+                        <div style="flex: 1;">
+                            <label style="font-weight: 600; font-size: 0.85rem; color: #334155;">Category:</label>
+                            <select id="adminItemCategory" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 4px;">
+                                <option value="Dry Waste">Dry Waste</option>
+                                <option value="Wet Waste">Wet Waste</option>
+                                <option value="Hazardous">Hazardous</option>
+                                <option value="E-Waste">E-Waste</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-weight: 600; font-size: 0.85rem; color: #334155;">Bin Stream:</label>
+                            <input type="text" id="adminItemBin" placeholder="e.g. Blue Bin (Recyclable)" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 4px;" />
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-weight: 600; font-size: 0.85rem; color: #334155;">Safe Disposal Instructions (Chronological):</label>
+                        <textarea id="adminItemInstruction" placeholder="Rinse clean. Crush flat. Place in blue bin." rows="3" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 4px;"></textarea>
+                    </div>
+                    <button type="submit" style="background: var(--primary-green); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 6px;">
+                        💾 Publish Item to Live Website
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tab 2: Manage Active Campus Bins -->
+            <div id="adminBinsListContainer" class="hidden">
+                <h3 style="font-size: 1rem; color: #1e293b; margin-bottom: 10px;">Active Campus Bin Nodes:</h3>
+                <div id="adminActiveBinsList" style="display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto;">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Tab 3: Manage Waste Database Items -->
+            <div id="adminWasteListContainer" class="hidden">
+                <h3 style="font-size: 1rem; color: #1e293b; margin-bottom: 10px;">Custom & Live Waste Database:</h3>
+                <div id="adminActiveWasteList" style="display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto;">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ==========================================
-         FOOTER
-         ========================================== -->
+    <!-- Admin Login Prompt Modal -->
+    <div id="adminLoginModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <button id="closeAdminLogin" class="modal-close">&times;</button>
+            <h2 style="font-size: 1.4rem; margin-bottom: 10px; color: #1e293b;">🔒 Admin Authentication</h2>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 16px;">Enter secure passkey to access management tools:</p>
+            <form id="adminLoginForm" style="display: flex; flex-direction: column; gap: 12px;">
+                <input type="password" id="adminPasskey" placeholder="Enter passkey (default: admin123)" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; text-align: center;" />
+                <button type="submit" style="background: #1e293b; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                    🔓 Unlock Control Center
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Level-Up Notification Toast -->
+    <div id="toastNotification" class="toast-notification hidden">
+        <span id="toastText">🎉 Rank Up!</span>
+    </div>
+
     <footer class="app-footer">
-        <p>EcoScan &copy; 2026 | Smart Municipal Waste Segregation Directory</p>
+        <p>EcoScan &copy; 2026 | B.Tech EVS Semester 3 Project (Deployed for Campus Sustainability)</p>
     </footer>
 
-    <!-- JavaScript Modules (Loaded in sequence) -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
