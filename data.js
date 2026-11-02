@@ -1,5 +1,12 @@
 /**
+<<<<<<< HEAD
  * EcoScan Static Database (25 items + Shock Facts)
+=======
+ * EcoScan Static Database
+ * Category Options: "Dry Waste", "Wet Waste", "Hazardous", "E-Waste"
+ * Bin Themes: "blue", "green", "red", "amber"
+ * Images are loaded from the local "images/" folder.
+>>>>>>> 547a87ff1af3e7d36c913c7c66df32be09767fd8
  */
 const shockFacts = [
     "⚠️ 1 plastic water bottle takes over 450 years to decompose in a landfill!",
@@ -66,6 +73,10 @@ let wasteDatabase = [
         binTheme: "green",
         badgeClass: "badge-wet",
         emoji: "🍲",
+<<<<<<< HEAD
+=======
+        // ⚠️ File name is cut off in your screenshot - rename the file to leftover_food.jpg
+>>>>>>> 547a87ff1af3e7d36c913c7c66df32be09767fd8
         imageSrc: "images/leftover_food.jpg",
         keywords: ["curry", "rice", "kitchen", "wet waste", "compost", "green bin"],
         instruction: "Strain liquid gravies into drains prior to disposal to prevent foul odor and flies in organic collection bins."
