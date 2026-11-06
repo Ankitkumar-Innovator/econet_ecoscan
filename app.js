@@ -1,15 +1,6 @@
 /**
  * EcoScan Application Engine (`app.js`)
- * Cleaned of dummy data. Operates strictly on real-time state and LocalStorage persistence.
- */
-
-/**
- * EcoScan Application Engine (`app.js`)
- * Fixed duplicate identifier syntax error and operates on real-time persistent data.
- */
-/**
- * EcoScan Application Engine (`app.js`)
- * Fixed constant assignment error and initialized real-time state.
+ * Enhanced with realistic dummy data & stream-aware live metrics for presentations.
  */
 
 let currentSearchTerm = "";
@@ -17,22 +8,29 @@ let currentCategoryFilter = "All";
 let currentFactIndex = 0;
 let currentRank = "🌱 Rookie Sorter";
 
-let userXp = parseInt(localStorage.getItem("ecoscan_xp")) || 0;
-let userStreak = parseInt(localStorage.getItem("ecoscan_streak")) || 1;
-let userName = localStorage.getItem("ecoscan_username") || "Student";
+let userXp = parseInt(localStorage.getItem("ecoscan_xp")) || 140;
+let userStreak = parseInt(localStorage.getItem("ecoscan_streak")) || 5;
+let userName = localStorage.getItem("ecoscan_username") || "EcoPresentor";
 let userStream = localStorage.getItem("ecoscan_stream") || "CSE";
 
+// Dummy data injected for streams to look active and realistic during live presentations
 let defaultStreamData = [
-    { stream: "CSE", name: "Computer Science", totalXp: 0, activeUsers: 0, icon: "💻" },
-    { stream: "ECE", name: "Electronics & Comm.", totalXp: 0, activeUsers: 0, icon: "⚡" },
-    { stream: "MECH", name: "Mechanical Eng.", totalXp: 0, activeUsers: 0, icon: "⚙️" },
-    { stream: "EE", name: "Electrical Eng.", totalXp: 0, activeUsers: 0, icon: "🔌" },
-    { stream: "CIVIL", name: "Civil Engineering", totalXp: 0, activeUsers: 0, icon: "🏗️" }
+    { stream: "CSE", name: "Computer Science", totalXp: 1250, activeUsers: 24, icon: "💻" },
+    { stream: "ECE", name: "Electronics & Comm.", totalXp: 980, activeUsers: 18, icon: "⚡" },
+    { stream: "MECH", name: "Mechanical Eng.", totalXp: 850, activeUsers: 15, icon: "⚙️" },
+    { stream: "EE", name: "Electrical Eng.", totalXp: 720, activeUsers: 12, icon: "🔌" },
+    { stream: "CIVIL", name: "Civil Engineering", totalXp: 640, activeUsers: 10, icon: "🏗️" }
 ];
 
-// Use 'let' instead of 'const' so these variables can be safely reassigned/parsed
+// Pre-populated initial campus nodes to make scanning/testing robust during live demo
+let defaultBinsRegistry = [
+    { location: "Block A - Main Lobby", stream: "CSE", status: "Live Active IoT Node (100% Operational)" },
+    { location: "Library Reading Hall", stream: "ECE", status: "Live Active IoT Node (100% Operational)" },
+    { location: "Cafeteria Quad", stream: "MECH", status: "Live Active IoT Node (100% Operational)" }
+];
+
 let streamLeaderboardData = JSON.parse(localStorage.getItem("ecoscan_leaderboard")) || defaultStreamData;
-let campusBinsRegistry = JSON.parse(localStorage.getItem("ecoscan_bins")) || [];
+let campusBinsRegistry = JSON.parse(localStorage.getItem("ecoscan_bins")) || defaultBinsRegistry;
 
 let storedWasteDb = JSON.parse(localStorage.getItem("ecoscan_waste_db"));
 if (storedWasteDb && Array.isArray(storedWasteDb) && typeof wasteDatabase !== "undefined") {
@@ -123,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
         adminLoginForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const passkey = document.getElementById("adminPasskey").value.trim();
-            // 🔐 CUSTOMIZE YOUR ADMIN PASSKEY HERE 🔐
             if (passkey === "ecoscan_admin") {
                 adminLoginModal.classList.add("hidden");
                 document.getElementById("adminPasskey").value = "";
@@ -135,9 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    
-
-// Admin Tabs Switching (Update this block to include tabManageWaste)
+    // Admin Tabs Switching
     const tabAddWaste = document.getElementById("tabAddWaste");
     const tabManageBins = document.getElementById("tabManageBins");
     const tabManageWaste = document.getElementById("tabManageWaste");
@@ -315,31 +310,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (qrImageContainer) {
                 qrImageContainer.innerHTML = `
-                    <div id="printableEcoStickerCard" style="background: linear-gradient(135deg, #1b4332, #2d6a4f); color: white; padding: 22px; border-radius: 16px; text-align: center; max-width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); margin: 0 auto;">
-                        <div style="font-size: 1.3rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.5px;">🌱 EcoScan Smart Bin</div>
-                        <div style="font-size: 0.85rem; opacity: 0.95; margin-bottom: 12px; font-weight: 600;">📍 ${location}</div>
-                        <div style="background: white; padding: 12px; border-radius: 12px; display: inline-block; margin-bottom: 12px;">
+                    <div id="printableEcoStickerCard" style="background: linear-gradient(135deg, #1b4332, #2d6a4f); color: white; padding: 24px; border-radius: 16px; text-align: center; max-width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); margin: 0 auto;">
+                        <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.85; margin-bottom: 4px;">🌿 Green Campus Mission 2026</div>
+                        <div style="font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.5px;">🌱 EcoScan Smart Bin</div>
+                        <div style="font-size: 0.9rem; opacity: 0.95; margin-bottom: 14px; font-weight: 600;">📍 ${location}</div>
+                        <div style="background: white; padding: 14px; border-radius: 12px; display: inline-block; margin-bottom: 14px;">
                             <img src="${qrApiUrl}" alt="Station QR Code" style="width: 160px; height: 160px; display: block;" />
                         </div>
-                        <div style="font-size: 0.9rem; font-weight: bold; color: #bbf7d0; margin-bottom: 4px;">🚀 SCAN TO SORT & EARN +25 XP!</div>
-                        <div style="font-size: 0.75rem; opacity: 0.9;">Target: ${stream}</div>
-                        <div style="font-size: 0.7rem; opacity: 0.75; margin-top: 8px; border-top: 1px dashed rgba(255,255,255,0.3); padding-top: 6px;">
-                            Join the Campus Sustainability Initiative • EVS Project 2026
+                        <div style="font-size: 0.95rem; font-weight: bold; color: #bbf7d0; margin-bottom: 6px;">🚀 SCAN TO SORT & EARN +25 XP!</div>
+                        <div style="font-size: 0.8rem; opacity: 0.9; margin-bottom: 10px; background: rgba(255,255,255,0.15); padding: 4px 8px; border-radius: 6px; display: inline-block;">Target Stream: <strong>${stream}</strong></div>
+                        <p style="font-size: 0.78rem; line-height: 1.4; opacity: 0.9; margin-bottom: 10px;">
+                            Join our college sustainability initiative! Help your department win the green leaderboard crown.
+                        </p>
+                        <div style="font-size: 0.7rem; opacity: 0.75; border-top: 1px dashed rgba(255,255,255,0.3); padding-top: 8px;">
+                            EVS Project Innovation • Zero Waste Campus Mission
                         </div>
                     </div>
                 `;
             }
 
             if (qrDetailsText) {
-                qrDetailsText.innerHTML = `<strong>Node:</strong> ${location} <br/> <strong>Stream:</strong> ${stream} <br/><span style="color: #16a34a; font-weight: bold;">🎯 Printable Campus Eco-Sticker Poster Ready!</span>`;
+                qrDetailsText.innerHTML = `<strong>Node:</strong> ${location} <br/> <strong>Stream:</strong> ${stream} <br/><span style="color: #16a34a; font-weight: bold;">🎯 Printable 1-Page Eco-Sticker Card Ready!</span>`;
             }
             
             if (qrPreviewArea) qrPreviewArea.classList.remove("hidden");
             addXp(10);
-            showToast("✨ Campus Eco-Sticker Poster Generated & Synced!");
+            showToast("✨ Printable Mission Poster Generated & Synced!");
 
             if (downloadQrBtn) {
-                downloadQrBtn.onclick = () => window.print();
+                downloadQrBtn.onclick = () => {
+                    const printWindow = window.open('', '_blank');
+                    const cardHtml = document.getElementById('printableEcoStickerCard').outerHTML;
+                    printWindow.document.write(`
+                        <html>
+                            <head>
+                                <title>EcoScan Mission Card - ${location}</title>
+                                <style>
+                                    body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f0fdf4; font-family: sans-serif; }
+                                    @media print { body { background: white; } }
+                                </style>
+                            </head>
+                            <body>
+                                ${cardHtml}
+                                <script>
+                                    window.onload = function() { window.print(); window.close(); }
+                                </script>
+                            </body>
+                        </html>
+                    `);
+                    printWindow.document.close();
+                };
             }
         });
     }
@@ -643,7 +663,7 @@ function renderAdminWasteList() {
         row.innerHTML = `
             <div>
                 <strong style="font-size: 0.9rem; color: #1e293b;">${item.emoji || '♻️'} ${item.name}</strong>
-                <div style="font-size: 0.75rem; color: #64748b;">Category: ${item.category} • Bin: ${item.bin}</div>
+                <div style="font-size: 0.75rem; color: #64748b;">Category: ${item.category} | Bin: ${item.bin}</div>
             </div>
             <button onclick="deleteWasteItem(${idx})" style="background: #fee2e2; color: #991b1b; border: none; padding: 6px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">
                 🗑️ Delete
