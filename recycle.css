@@ -1,0 +1,346 @@
+/* ==========================================================================
+   EcoScan - Recycle & Reuse (`recycle.css`)
+   Uses the colour variables from style.css. All class names start with
+   "recycle-" so nothing here can affect the existing pages.
+   ========================================================================== */
+
+/* Navbar button (re-uses .nav-utility-btn look) */
+.recycle-nav-btn {
+    background: linear-gradient(135deg, #43a047, #2e7d32);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.recycle-nav-btn.active {
+    background: #ffffff;
+    color: var(--primary-dark);
+}
+
+/* Section header */
+.recycle-header {
+    margin-bottom: 1.25rem;
+}
+.recycle-header h2 {
+    font-size: 1.6rem;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+}
+.recycle-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Layout: sidebar left, content right */
+.recycle-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* Sidebar (Amazon-style category list) */
+.recycle-sidebar {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 14px 8px;
+    position: sticky;
+    top: 96px;
+}
+.recycle-sidebar-title {
+    font-size: 1rem;
+    color: var(--text-dark);
+    padding: 0 10px 10px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.recycle-category-list {
+    list-style: none;
+}
+.recycle-category-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    border-left: 4px solid transparent;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.recycle-category-btn:hover {
+    background: #f1f5f9;
+}
+.recycle-category-btn.active {
+    background: #e8f5e9;
+    border-left-color: var(--primary-green);
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+.recycle-cat-name {
+    flex: 1;
+}
+.recycle-cat-count {
+    font-size: 0.75rem;
+    background: #e2e8f0;
+    color: var(--text-muted);
+    border-radius: 10px;
+    padding: 1px 8px;
+}
+.recycle-category-btn.active .recycle-cat-count {
+    background: var(--primary-green);
+    color: #fff;
+}
+
+/* Visible keyboard focus for every new control */
+.recycle-category-btn:focus-visible,
+.recycle-menu-toggle:focus-visible,
+.recycle-watch-btn:focus-visible,
+.recycle-back-btn:focus-visible,
+.recycle-yt-link a:focus-visible,
+.recycle-nav-btn:focus-visible,
+.recycle-detail-title:focus-visible {
+    outline: 3px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+/* Mobile menu toggle is hidden on desktop */
+.recycle-menu-toggle {
+    display: none;
+}
+
+/* Tutorial cards */
+.recycle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+.recycle-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.recycle-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.recycle-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #e2e8f0;
+}
+.recycle-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.recycle-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    padding-left: 3px;
+}
+.recycle-card-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+.recycle-badge {
+    align-self: flex-start;
+    background: #e8f5e9;
+    color: var(--primary-green);
+}
+.recycle-card-title {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+}
+.recycle-card-summary {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    flex: 1;
+}
+.recycle-watch-btn {
+    background: var(--primary-green);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.recycle-watch-btn:hover {
+    background: var(--primary-dark);
+}
+
+.recycle-empty {
+    grid-column: 1 / -1;
+    background: var(--card-bg);
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Tutorial detail view */
+.recycle-detail {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+}
+.recycle-back-btn {
+    background: #e2e8f0;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 14px;
+    display: inline-block;
+}
+.recycle-back-btn:hover {
+    background: #cbd5e1;
+}
+.recycle-detail-title {
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    margin: 8px 0 14px;
+}
+.recycle-video-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+.recycle-video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.recycle-yt-link {
+    margin: 8px 0 16px;
+    font-size: 0.85rem;
+}
+.recycle-yt-link a {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+.recycle-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.recycle-info-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+}
+.recycle-info-box h4 {
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+.recycle-materials {
+    padding-left: 20px;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+.recycle-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.recycle-step {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+.recycle-step-number {
+    flex: 0 0 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--primary-green);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tablet / mobile: sidebar becomes a collapsible menu */
+@media (max-width: 800px) {
+    .recycle-layout {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .recycle-menu-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+    }
+    .recycle-sidebar {
+        display: none;
+        position: static;
+    }
+    .recycle-sidebar.open {
+        display: block;
+    }
+    .recycle-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .recycle-card,
+    .recycle-card:hover {
+        transition: none;
+        transform: none;
+    }
+}
+
+/* Make sure the shared .hidden helper always wins inside this section */
+.recycle-section .hidden,
+.recycle-section.hidden {
+    display: none !important;
+}
