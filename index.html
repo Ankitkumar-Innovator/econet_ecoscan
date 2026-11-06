@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoScan - Smart Waste Disposal Guide & Campus IoT Node</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="recycle.css">
 </head>
 <body>
 
@@ -29,6 +30,9 @@
 
             <!-- Right-aligned Quick Navigation Utilities -->
             <div class="nav-actions-group">
+                <button id="openRecycleBtn" class="nav-utility-btn recycle-nav-btn" title="Recycle &amp; Reuse DIY Tutorials" aria-pressed="false">
+                    ♻️ Recycle &amp; Reuse
+                </button>
                 <button id="openLeaderboardBtn" class="nav-utility-btn leaderboard-btn" title="View Stream Leaderboard">
                     🏆 Leaderboard
                 </button>
@@ -43,6 +47,8 @@
 
     <main class="main-container">
 
+        <!-- Existing home view (unchanged), wrapped so it can be hidden while Recycle & Reuse is open -->
+        <div id="wasteHomeView">
         <!-- Search & Control Action Bar -->
         <section class="search-section">
             <div class="search-bar-wrapper">
@@ -80,6 +86,33 @@
         <div id="noResults" class="no-results hidden">
             <p>🔍 No matching waste item found in the database.</p>
         </div>
+        </div>
+
+        <!-- Recycle & Reuse view (rendered by recycle.js) -->
+        <section id="recycleSection" class="recycle-section hidden" aria-labelledby="recycleHeading">
+            <div class="recycle-header">
+                <h2 id="recycleHeading">♻️ Recycle &amp; Reuse</h2>
+                <p>Turn everyday waste into something useful. Pick a material and follow a beginner-friendly video tutorial.</p>
+            </div>
+
+            <div class="recycle-layout">
+                <!-- Mobile toggle for the category menu -->
+                <button id="recycleMenuToggle" class="recycle-menu-toggle" aria-expanded="false" aria-controls="recycleSidebar">
+                    <span>☰ Browse Materials: <strong id="recycleMenuCurrent">All Tutorials</strong></span>
+                    <span aria-hidden="true">▾</span>
+                </button>
+
+                <aside id="recycleSidebar" class="recycle-sidebar" aria-label="Browse Materials">
+                    <h3 class="recycle-sidebar-title">Browse Materials</h3>
+                    <ul id="recycleCategoryList" class="recycle-category-list"></ul>
+                </aside>
+
+                <div class="recycle-content">
+                    <div id="recycleGrid" class="recycle-grid" aria-live="polite"></div>
+                    <div id="recycleDetail" class="recycle-detail hidden"></div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -300,5 +333,6 @@
 
     <script src="data.js"></script>
     <script src="app.js"></script>
+    <script src="recycle.js"></script>
 </body>
 </html>
