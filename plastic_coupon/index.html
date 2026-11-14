@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eco-Bag Plastic Deposit & Coupon Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <section id="coupon-generator" class="coupon-box">
+    <div class="header-row">
+      <h2>Plastic Deposit Bag</h2>
+      <span id="lifetime-badge" class="badge">Lifetime: 0 items</span>
+    </div>
+    <p class="subtitle">Add all your plastic items to generate one combined reward coupon.</p>
+    
+    <!-- Item Selection Controls -->
+    <label for="item-type">Select Item:</label>
+    <select id="item-type">
+      <option value="LAYS_5">Lay's / Kurkure Packet (₹5/₹10 MLP) — ₹0.50</option>
+      <option value="THUMSUP_200">Thums Up / Sprite Bottle (200ml PET) — ₹1.00</option>
+      <option value="WATER_1L">Bisleri / Water Bottle (1L PET) — ₹2.00</option>
+      <option value="MILK_POUCH">Milk / Curd Pouch (500ml LDPE) — ₹1.00</option>
+      <option value="SHAMPOO_BOTTLE">Shampoo / Detergent Bottle (HDPE) — ₹3.00</option>
+    </select>
+
+    <div class="input-row">
+      <div class="qty-group">
+        <label for="quantity">Qty:</label>
+        <input type="number" id="quantity" min="1" max="200" value="1" />
+      </div>
+      <button type="button" id="add-btn" class="secondary-btn">+ Add to Bag</button>
+    </div>
+
+    <!-- Deposit Bag List -->
+    <div id="bag-container" class="bag-container hidden">
+      <h3>Your Deposit Bag</h3>
+      <ul id="bag-list"></ul>
+      
+      <div class="bag-summary">
+        <span>Total Items: <strong id="total-items">0</strong></span>
+        <span>Est. Reward: <strong id="total-reward">₹0.00</strong></span>
+      </div>
+
+      <div class="eco-impact-box">
+        🌍 Impact: <strong id="plastic-saved">0g</strong> plastic diverted | <strong id="co2-saved">0g</strong> CO₂ prevented
+      </div>
+
+      <button type="button" id="generate-btn" class="primary-btn">Generate Combined Coupon</button>
+    </div>
+
+    <!-- Final Generated Coupon -->
+    <div id="coupon-result" class="hidden" aria-live="polite">
+      <p class="success-title">🎉 Combined Eco-Coupon Ready!</p>
+      <p>Reward Value: <strong id="discount-text"></strong></p>
+      <p id="final-eco-text" class="meta-text"></p>
+      <div class="code-display">
+        <code id="coupon-code"></code>
+      </div>
+      <div class="action-row">
+        <button type="button" id="copy-btn">Copy Code</button>
+        <button type="button" id="reset-btn" class="outline-btn">New Deposit</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
