@@ -137,7 +137,7 @@ let wasteDatabase = [
         binTheme: "blue",
         badgeClass: "badge-dry",
         emoji: "🥤",
-        imageSrc: "images/12-ounce_Aluminum_Can_(32167233397).jpg",
+        imageSrc: "images/Aluminum_Can.jpg",
         keywords: ["soda", "coke", "metal", "tin", "aluminum", "blue bin"],
         instruction: "Rinse out sticky sugary liquid, crush the can flat, and place inside the recyclable dry waste bin."
     },
